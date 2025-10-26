@@ -17,6 +17,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.IOException;
 
 import com.example.visualizer.model.*;
+import com.example.visualizer.service.Valuate;
 
 @RestController
 @RequestMapping("/api")
@@ -41,11 +42,10 @@ public class UploadController {
 			csv.readNext();
 			while ((line = csv.readNext()) != null) {
 				pf.addStock(line);
-				//System.out.println(line);
 			}
-			pf.print();
+			
+			Valuate.processPortfolio(pf);
 			csv.close();		
 		}
-	
 }
 

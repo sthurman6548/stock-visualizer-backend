@@ -13,6 +13,7 @@ public class Stock {
 	public Stock(String symbol, LocalDate date, int amt, double price, String currency) {
 		this.symbol = symbol;
 		this.pur_date = date;
+		this.price = price;
 		this.quant = amt;
 		this.curncy = currency;
 		
@@ -46,6 +47,7 @@ public class Stock {
 				Double.parseDouble(line[3]),
 				line[4]		
 				);
+		
 				
 	}
 	
