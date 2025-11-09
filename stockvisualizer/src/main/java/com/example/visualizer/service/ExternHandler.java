@@ -6,14 +6,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import org.json.JSONObject;
 
 import com.example.visualizer.model.Stock;
 
-public class DownloadController {
+public class ExternHandler {
 	
 	
 	public static ArrayList<Double> getCurrPrices(ArrayList<Stock> p) {
@@ -21,11 +20,9 @@ public class DownloadController {
 		ArrayList<Double> prices = new ArrayList<Double>();
 		double price;
 		HttpClient client; 
-		int counter;
 		
 		client = HttpClient.newHttpClient();
 		price = 0;
-		counter = 0;
 		
 		for(int i =0; i < p.size(); i++) {
 			HttpRequest request = HttpRequest.newBuilder()
@@ -37,9 +34,8 @@ public class DownloadController {
 			try {
 				HttpResponse<String> res = client.send(request, HttpResponse.BodyHandlers.ofString());
 					price = handleResponse(res);
-					prices.add(i, price);
-					counter++;
-			
+					p.get(i).setCurrPrice(price);
+					prices.add(i, price);			
 			} catch (IOException e) {	
 				System.out.println("[Error]: " + e);
 			} catch (InterruptedException e) {

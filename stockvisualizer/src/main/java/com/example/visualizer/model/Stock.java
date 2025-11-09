@@ -8,7 +8,9 @@ public class Stock {
 	private LocalDate pur_date;
 	private int quant;
 	private double price;
+	private double currPrice;
 	private String curncy;
+	private double percent;
 	
 	public Stock(String symbol, LocalDate date, int amt, double price, String currency) {
 		this.symbol = symbol;
@@ -16,6 +18,8 @@ public class Stock {
 		this.price = price;
 		this.quant = amt;
 		this.curncy = currency;
+		this.currPrice = 0;
+		this.percent = 0;
 		
 	}
 
@@ -39,6 +43,22 @@ public class Stock {
 		return curncy;
 	}
 	
+	public double getCurrPrice() {
+		return this.currPrice;
+	}
+	
+	public void setCurrPrice(double price) {
+		this.currPrice = price;
+	}
+	
+	public double getPercent() {
+		return percent;
+	}
+
+	public void setPercent(double percent) {
+		this.percent = percent;
+	}
+
 	public static Stock fromCsv(String[] line) {
 		return new Stock (
 				line[0],
